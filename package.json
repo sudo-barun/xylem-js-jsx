@@ -1,0 +1,22 @@
+{
+	"name": "@xylem-js/jsx",
+	"version": "0.1.0",
+	"author": {
+		"name": "Barun Kharel",
+		"email": "kharelbarun@gmail.com"
+	},
+	"type": "module",
+	"devDependencies": {
+		"@xylem-js/xylem-js": "0.4.0",
+		"typescript": "5.6.2"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/sudo-barun/xylem-js-jsx.git"
+	},
+	"bugs": {
+		"url": "https://github.com/sudo-barun/xylem-js-jsx/issues"
+	},
+	"homepage": "https://github.com/sudo-barun/xylem-js-jsx#readme",
+	"license": "MIT"
+}
