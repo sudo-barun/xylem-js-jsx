@@ -2,7 +2,9 @@ import Component from '../../@xylem-js/xylem-js/dom/Component.js';
 import ElementComponent from '../../@xylem-js/xylem-js/dom/_internal/ElementComponent.js';
 import isSupplier from '../../@xylem-js/xylem-js/utilities/isSupplier.js';
 import TextComponent from '../../@xylem-js/xylem-js/dom/_internal/TextComponent.js';
+import ComponentChildren from '../../@xylem-js/xylem-js/types/ComponentChildren.js';
 import CommentComponent from '../../@xylem-js/xylem-js/dom/_internal/CommentComponent.js';
+import Subscriber from '../xylem-js/types/Subscriber.js';
 
 export type * from './jsx.d.js';
 
@@ -11,8 +13,8 @@ const listenerRegexAt = /^@(.+)$/;
 
 export
 function jsxs(
-	tagName: string|(new(...args: any) => Component),
-	attributesWithChildren: {[propertyName: string]: any, children?: undefined|string|object|Array<any>},
+	tagName: string|(new(...args: unknown[]) => Component),
+	attributesWithChildren: {[attributeName: string]: unknown, children?: undefined|string|Component|ComponentChildren},
 	key?: number
 ) {
 	let { children, ...attributes } = attributesWithChildren;
@@ -20,7 +22,7 @@ function jsxs(
 		attributes.key = key;
 	}
 
-	let childrenArray: any[];
+	let childrenArray: ComponentChildren;
 
 	if (Array.isArray(children)) {
 		childrenArray = children.flat();
@@ -62,20 +64,20 @@ function jsxs(
 		for (const key in attributes) {
 
 			if (key === '<>') {
-				elementComponent.elementSubscriber(attributes['<>']);
+				elementComponent.elementSubscriber(attributes['<>'] as Subscriber<Element>);
 				attributes['<>'] = false;
 			} else if (listenerRegexOn.test(key)) {
 				const [, eventName] = listenerRegexOn.exec(key)!;
-				elementComponent.addListener(eventName, attributes[key]);
+				elementComponent.addListener(eventName, attributes[key] as EventListenerOrEventListenerObject);
 				attributes[key] = false;
 			} else if (listenerRegexAt.test(key)) {
 				const [, eventName] = listenerRegexAt.exec(key)!;
-				elementComponent.addListener(eventName, attributes[key]);
+				elementComponent.addListener(eventName, attributes[key] as EventListenerOrEventListenerObject);
 				attributes[key] = false;
 			}
 		}
 		return elementComponent;
-	} else if (tagName as any === Fragment) {
+	} else if (tagName as unknown === Fragment) {
 		return childrenArray;
 	} else {
 		return new tagName(attributesWithChildren);
@@ -84,11 +86,11 @@ function jsxs(
 
 export
 function jsx(
-	_tagName: string|(new(...args: any)=>any),
-	_attributesWithChildren: {[attributeName: string]: any, children?: undefined|string|object|Array<any>},
+	_tagName: string|(new(...args: unknown[])=>Component),
+	_attributesWithChildren: {[attributeName: string]: unknown, children?: undefined|string|Component|ComponentChildren},
 	_key?: number
 ) {
-	return jsxs.apply(null, arguments as any);
+	return jsxs.apply(null, arguments as unknown as Parameters<typeof jsx>);
 }
 
 export
