@@ -1,6 +1,7 @@
 import ElementComponent from '../../@xylem-js/xylem-js/dom/_internal/ElementComponent.js';
 import isSupplier from '../../@xylem-js/xylem-js/utilities/isSupplier.js';
 import TextComponent from '../../@xylem-js/xylem-js/dom/_internal/TextComponent.js';
+import CommentComponent from '../../@xylem-js/xylem-js/dom/_internal/CommentComponent.js';
 const listenerRegexOn = /^on:(.+)$/;
 const listenerRegexAt = /^@(.+)$/;
 export function jsxs(tagName, attributesWithChildren, key) {
@@ -35,6 +36,13 @@ export function jsxs(tagName, attributesWithChildren, key) {
         }
         return new TextComponent(child);
     });
+    for (let i = 1; i < childrenArray.length; i++) {
+        const child = childrenArray[i];
+        if (child instanceof TextComponent && (childrenArray[i - 1] instanceof TextComponent)) {
+            childrenArray.splice(i, 0, new CommentComponent(''));
+            i++;
+        }
+    }
     if (typeof tagName === 'string') {
         const elementComponent = new ElementComponent(tagName, attributes, childrenArray);
         for (const key in attributes) {
