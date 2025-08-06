@@ -12,7 +12,11 @@ type Attribute = (
 type ComponentChild = ComponentChildren extends (infer U)[] ? U : never;
 
 type EventHandlers = {
-	[K in keyof GlobalEventHandlersEventMap as `on:${K}`]: ((ev: GlobalEventHandlersEventMap[K]) => void)
+	[K in keyof GlobalEventHandlersEventMap as `on:${K}`]: (
+		((ev: GlobalEventHandlersEventMap[K]) => void)
+		|
+		{ handleEvent: (ev: GlobalEventHandlersEventMap[K]) => void }
+	)
 };
 
 export namespace JSX {
