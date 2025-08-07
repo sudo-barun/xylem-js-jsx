@@ -13,7 +13,7 @@ export function jsxs(tagName, attributesWithChildren, key) {
     if (Array.isArray(children)) {
         childrenArray = children.flat();
     }
-    else if (children === undefined) {
+    else if (children === undefined || children === null) {
         childrenArray = [];
     }
     else if (typeof children === 'string') {
@@ -22,7 +22,9 @@ export function jsxs(tagName, attributesWithChildren, key) {
     else {
         childrenArray = [children];
     }
-    childrenArray = (childrenArray).map(child => {
+    childrenArray = childrenArray
+        .filter(child => !(child === undefined || child === null))
+        .map(child => {
         if (typeof child === 'object' && child !== null) {
             if (Array.isArray(child)) {
                 throw new Error(`child is array`);

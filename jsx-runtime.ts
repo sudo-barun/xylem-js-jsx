@@ -14,7 +14,7 @@ const listenerRegexAt = /^@(.+)$/;
 export
 function jsxs(
 	tagName: string|(new(...args: unknown[]) => Component),
-	attributesWithChildren: {[attributeName: string]: unknown, children?: undefined|string|Component|ComponentChildren},
+	attributesWithChildren: {[attributeName: string]: unknown, children?: undefined|null|string|Component|ComponentChildren},
 	key?: number
 ) {
 	let { children, ...attributes } = attributesWithChildren;
@@ -26,7 +26,7 @@ function jsxs(
 
 	if (Array.isArray(children)) {
 		childrenArray = children.flat();
-	} else if (children === undefined) {
+	} else if (children === undefined || children === null) {
 		childrenArray = [];
 	} else if (typeof children === 'string') {
 		childrenArray = [new TextComponent(children)];
@@ -34,7 +34,9 @@ function jsxs(
 		childrenArray = [children];
 	}
 
-	childrenArray = (childrenArray).map(child => {
+	childrenArray = childrenArray
+	.filter(child => !(child === undefined || child === null))
+	.map(child => {
 		if (typeof child === 'object' && child !== null) {
 			if (Array.isArray(child)) {
 				throw new Error(`child is array`);
@@ -87,7 +89,7 @@ function jsxs(
 export
 function jsx(
 	_tagName: string|(new(...args: unknown[])=>Component),
-	_attributesWithChildren: {[attributeName: string]: unknown, children?: undefined|string|Component|ComponentChildren},
+	_attributesWithChildren: {[attributeName: string]: unknown, children?: undefined|null|string|Component|ComponentChildren},
 	_key?: number
 ) {
 	return jsxs.apply(null, arguments as unknown as Parameters<typeof jsx>);

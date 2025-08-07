@@ -43,10 +43,10 @@ export namespace JSX {
 					>,
 				'<>'?: Subscriber<HTMLElement>|Subscriber<SVGElement>|Subscriber<MathMLElement>,
 				children?:
-					| string|number|bigint|Supplier<string|number|bigint>
+					| string|number|bigint|null|undefined|Supplier<string|number|bigint|null|undefined>
 					| ComponentChild
 					| Array<
-						| string|number|bigint|Supplier<string|number|bigint>
+						| string|number|bigint|null|undefined|Supplier<string|number|bigint|null|undefined>
 						| ComponentChild | ComponentChildren
 					>
 				,
@@ -80,10 +80,10 @@ export namespace JSX {
 					| Subscriber<HTMLElement>|Subscriber<SVGElement>|Subscriber<MathMLElement>
 
 					// children
-					| string|number|bigint|Supplier<string|number|bigint>
+					| string|number|bigint|null|undefined|Supplier<string|number|bigint|null|undefined>
 					| ComponentChild
 					| Array<
-						| string|number|bigint|Supplier<string|number|bigint>
+						| string|number|bigint|null|undefined|Supplier<string|number|bigint|null|undefined>
 						| ComponentChild | ComponentChildren
 					>
 			}
