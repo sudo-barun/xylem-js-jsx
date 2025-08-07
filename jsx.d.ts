@@ -27,11 +27,11 @@ export namespace JSX {
 			{
 				class?:
 					| Attribute
-					| { [className: string]: boolean|Supplier<boolean> }
+					| { [className: string]: unknown|Supplier<unknown> }
 					| Array<
 						string
 						| Supplier<string>
-						| { [className: string]: boolean|Supplier<boolean> }
+						| { [className: string]: unknown|Supplier<unknown> }
 					>,
 				style?:
 					| Attribute
@@ -58,11 +58,11 @@ export namespace JSX {
 					| Attribute
 
 					// class attribute
-					| { [className: string]: boolean|Supplier<boolean> }
+					| { [className: string]: unknown|Supplier<unknown> }
 					| Array<
 						string
 						| Supplier<string>
-						| { [className: string]: boolean|Supplier<boolean> }
+						| { [className: string]: unknown|Supplier<unknown> }
 					>
 
 					// style attribute
