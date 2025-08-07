@@ -29,8 +29,8 @@ export namespace JSX {
 					| Attribute
 					| { [className: string]: unknown|Supplier<unknown> }
 					| Array<
-						string
-						| Supplier<string>
+						string|false|null|undefined
+						| Supplier<string|false|null|undefined>
 						| { [className: string]: unknown|Supplier<unknown> }
 					>,
 				style?:
@@ -60,8 +60,8 @@ export namespace JSX {
 					// class attribute
 					| { [className: string]: unknown|Supplier<unknown> }
 					| Array<
-						string
-						| Supplier<string>
+						string|false|null|undefined
+						| Supplier<string|false|null|undefined>
 						| { [className: string]: unknown|Supplier<unknown> }
 					>
 
