@@ -35,11 +35,11 @@ export namespace JSX {
 					>,
 				style?:
 					| Attribute
-					| { [propertyName: string]: Supplier<false|string> }
+					| { [propertyName: string]: string|number|bigint|false|null|undefined|Supplier<string|number|bigint|false|null|undefined> }
 					| Array<
-						string
-						| Supplier<string>
-						| { [propertyName: string]: Supplier<false|string> }
+						string|false|null|undefined
+						| Supplier<string|false|null|undefined>
+						| { [propertyName: string]: string|number|bigint|false|null|undefined|Supplier<string|number|bigint|false|null|undefined> }
 					>,
 				'<>'?: Subscriber<HTMLElement>|Subscriber<SVGElement>|Subscriber<MathMLElement>,
 				children?:
@@ -66,11 +66,11 @@ export namespace JSX {
 					>
 
 					// style attribute
-					| { [propertyName: string]: Supplier<false|string> }
+					| { [propertyName: string]: string|number|bigint|false|null|undefined|Supplier<string|number|bigint|false|null|undefined> }
 					| Array<
-						string
-						| Supplier<string>
-						| { [propertyName: string]: Supplier<false|string> }
+						string|false|null|undefined
+						| Supplier<string|false|null|undefined>
+						| { [propertyName: string]: string|number|bigint|false|null|undefined|Supplier<string|number|bigint|false|null|undefined> }
 					>
 
 					// event listener
