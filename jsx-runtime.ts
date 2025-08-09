@@ -1,10 +1,10 @@
-import Component from '../../@xylem-js/xylem-js/dom/Component.js';
+import type Component from '../../@xylem-js/xylem-js/dom/Component.js';
 import ElementComponent from '../../@xylem-js/xylem-js/dom/_internal/ElementComponent.js';
 import isSupplier from '../../@xylem-js/xylem-js/utilities/isSupplier.js';
 import TextComponent from '../../@xylem-js/xylem-js/dom/_internal/TextComponent.js';
-import ComponentChildren from '../../@xylem-js/xylem-js/types/ComponentChildren.js';
+import type ComponentChildren from '../../@xylem-js/xylem-js/types/ComponentChildren.js';
 import CommentComponent from '../../@xylem-js/xylem-js/dom/_internal/CommentComponent.js';
-import Subscriber from '../xylem-js/types/Subscriber.js';
+import type Subscriber from '../xylem-js/types/Subscriber.js';
 
 export type * from './jsx.d.js';
 
