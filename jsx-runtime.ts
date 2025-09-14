@@ -19,7 +19,7 @@ function jsxs(
 ) {
 	let { children, ...attributes } = attributesWithChildren;
 	if (arguments.length > 2) {
-		attributes.key = key;
+		attributes['key'] = key;
 	}
 
 	let childrenArray: ComponentChildren;
