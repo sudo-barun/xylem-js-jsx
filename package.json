@@ -7,7 +7,7 @@
 	},
 	"type": "module",
 	"devDependencies": {
-		"@xylem-js/xylem-js": "0.5.2",
+		"@xylem-js/xylem-js": "0.7.3",
 		"typescript": "5.8.3"
 	},
 	"scripts": {
