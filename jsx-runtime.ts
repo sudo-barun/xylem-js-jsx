@@ -69,11 +69,11 @@ function jsxs(
 				elementComponent.elementSubscriber(attributes['<>'] as Subscriber<Element>);
 				attributes['<>'] = false;
 			} else if (listenerRegexOn.test(key)) {
-				const [, eventName] = listenerRegexOn.exec(key)!;
+				const eventName = listenerRegexOn.exec(key)![1]!;
 				elementComponent.addListener(eventName, attributes[key] as EventListenerOrEventListenerObject);
 				attributes[key] = false;
 			} else if (listenerRegexAt.test(key)) {
-				const [, eventName] = listenerRegexAt.exec(key)!;
+				const eventName = listenerRegexAt.exec(key)![1]!;
 				elementComponent.addListener(eventName, attributes[key] as EventListenerOrEventListenerObject);
 				attributes[key] = false;
 			}
